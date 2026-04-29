@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Segunda Guerra Mundial — Historia Interactiva</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/sections.css">
+</head>
+<body>
+
+  <div id="progress-bar"></div>
+
+  <nav id="side-nav" aria-label="Navegación de secciones">
+    <ul>
+      <li><a href="#portada"    class="nav-dot active" data-label="Inicio"></a></li>
+      <li><a href="#contexto"   class="nav-dot" data-label="Antecedentes"></a></li>
+      <li><a href="#cronologia" class="nav-dot" data-label="Cronología"></a></li>
+      <li><a href="#mapa"       class="nav-dot" data-label="Mapa"></a></li>
+      <li><a href="#holocausto" class="nav-dot" data-label="Holocausto"></a></li>
+      <li><a href="#tecnologia" class="nav-dot" data-label="Tecnología"></a></li>
+      <li><a href="#video"      class="nav-dot" data-label="Documental"></a></li>
+      <li><a href="#galeria"    class="nav-dot" data-label="Galería"></a></li>
+      <li><a href="#personajes" class="nav-dot" data-label="Protagonistas"></a></li>
+      <li><a href="#quiz"       class="nav-dot" data-label="Quiz"></a></li>
+      <li><a href="#fin"        class="nav-dot" data-label="Legado"></a></li>
+    </ul>
+  </nav>
+  <div id="nav-tooltip"></div>
+
+  <!-- ── PORTADA ── -->
+  <section id="portada" class="section section--hero" data-section-index="0">
+    <div class="hero__bg-grid"></div>
+    <div class="hero__content">
+      <p class="hero__kicker">1939 — 1945</p>
+      <h1 class="hero__title">Segunda<br>Guerra<br>Mundial</h1>
+      <p class="hero__subtitle">El conflicto más devastador de la historia humana.<br>Un recorrido interactivo por seis años que cambiaron el mundo.</p>
+      <div class="hero__stats">
+        <div class="hero__stat"><span class="hero__stat-num">70M</span><span class="hero__stat-label">víctimas</span></div>
+        <div class="hero__stat"><span class="hero__stat-num">30</span><span class="hero__stat-label">países</span></div>
+        <div class="hero__stat"><span class="hero__stat-num">6</span><span class="hero__stat-label">años</span></div>
+      </div>
+      <a href="#contexto" class="hero__cta">Comenzar el recorrido <span class="cta-arrow">↓</span></a>
+      <div class="hero__scroll-hint"><div class="scroll-line"></div></div>
+    </div>
+  </section>
+
+  <!-- ── ANTECEDENTES ── -->
+  <section id="contexto" class="section section--sticky-split" data-section-index="1">
+    <div class="sticky-split__sticky">
+      <div class="sticky-img">
+        <div class="sticky-img__frame" id="img-frame-contexto">
+          <img id="sticky-real-img" src="" alt="" style="width:100%;height:100%;object-fit:cover;display:none;">
+          <div class="sticky-img__placeholder" id="sticky-placeholder"><span class="img-label">···</span></div>
+        </div>
+        <div class="sticky-img__caption" id="img-caption-contexto"></div>
+      </div>
+    </div>
+    <div class="sticky-split__scroll">
+
+      <div class="scroll-step" data-img="0"
+        data-caption="Firma del Tratado de Versalles, 28 junio 1919"
+        data-src="assets/images/contexto-1.jpg">
+        <p class="section-kicker">Capítulo I</p>
+        <h2 class="section-title">Las semillas del conflicto</h2>
+        <p>El 28 de junio de 1919, Alemania firmó el Tratado de Versalles en condiciones humillantes: pérdida del 13% del territorio, reparaciones impagables y la "cláusula de culpa" que responsabilizaba a Alemania de toda la guerra. El resentimiento fue el combustible del extremismo.</p>
+      </div>
+
+      <div class="scroll-step" data-img="1"
+        data-caption="Desempleados en una cola de comida durante la Gran Depresión, 1931"
+        data-src="assets/images/contexto-2.jpg">
+        <h3 class="subsection-title">La Gran Depresión</h3>
+        <p>El crack de 1929 dejó a seis millones de alemanes en el paro. La miseria y el caos social crearon el caldo de cultivo ideal para que los discursos de odio y las promesas de restauración nacional encontraran eco masivo en una sociedad desesperada.</p>
+      </div>
+
+      <div class="scroll-step" data-img="2"
+        data-caption="Hitler en un mitin del NSDAP, Núremberg, 1933"
+        data-src="assets/images/contexto-3.jpg">
+        <h3 class="subsection-title">El ascenso del nazismo</h3>
+        <p>El 30 de enero de 1933, Hitler fue nombrado Canciller. En menos de un año desmanteló las instituciones democráticas y consolidó un régimen totalitario. Las Leyes de Núremberg de 1935 codificaron la discriminación racial. En 1938, la Kristallnacht fue la primera gran oleada de violencia abierta contra los judíos.</p>
+      </div>
+
+      <div class="scroll-step" data-img="3"
+        data-caption="Tanques de la Wehrmacht en Polonia, 1 septiembre 1939"
+        data-src="assets/images/contexto-4.jpg">
+        <h3 class="subsection-title">El detonante</h3>
+        <p>A las 4:45 del 1 de septiembre de 1939, 1,5 millones de soldados alemanes cruzaron la frontera polaca ejecutando la <em>Blitzkrieg</em>. Dos días después, Reino Unido y Francia declararon la guerra a Alemania. La Segunda Guerra Mundial había comenzado oficialmente.</p>
+      </div>
+
+      <div class="scroll-step" data-img="4"
+        data-caption="Soldados británicos esperando evacuación en las playas de Dunkerque, 1940"
+        data-src="assets/images/contexto-5.jpg">
+        <h3 class="subsection-title">Dunkerque y la caída de Francia</h3>
+        <p>En mayo de 1940, Alemania atacó Francia por las Ardenas, consideradas intransitables. París cayó el 14 de junio. La Operación Dynamo evacuó 338.000 soldados aliados desde Dunkerque. Churchill lo llamó "un milagro", pero advirtió que las guerras no se ganan con evacuaciones.</p>
+      </div>
+
+      <div class="scroll-step" data-img="5"
+        data-caption="Columnas motorizadas de la Wehrmacht en la estepa soviética, verano 1941"
+        data-src="assets/images/contexto-6.jpg">
+        <h3 class="subsection-title">Operación Barbarroja</h3>
+        <p>El 22 de junio de 1941, 3,8 millones de soldados del Eje invadieron la URSS en el mayor ataque de la historia. Stalin, avisado por sus espías semanas antes, se negó a creerlo. En las primeras semanas Alemania capturó 3 millones de prisioneros. Pero el invierno ruso y la resistencia soviética frenaron el avance ante Moscú en diciembre de 1941. La guerra relámpago había fracasado.</p>
+      </div>
+
+      <div class="scroll-step" data-img="5"
+        data-caption="Soldados del Ejército Rojo en Stalingrado, invierno 1942"
+        data-src="assets/images/contexto-6.jpg">
+        <h3 class="subsection-title">El punto de inflexión</h3>
+        <p>La batalla de Stalingrado (agosto 1942 – febrero 1943) fue el combate más sangriento de la guerra: 2 millones de bajas totales. El VI Ejército alemán quedó rodeado en la 'maniobra Urano' soviética. El 2 de febrero de 1943, el Mariscal Paulus rindió sus tropas. Por primera vez, una gran unidad alemana se rendía. A partir de ese momento, el Ejército Rojo nunca cedería la iniciativa.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── CRONOLOGÍA ── -->
+  <section id="cronologia" class="section section--timeline" data-section-index="2">
+    <div class="section-header">
+      <p class="section-kicker reveal-up">Capítulo II</p>
+      <h2 class="section-title reveal-up">Cronología del conflicto</h2>
+      <p class="reveal-up">Los hitos que marcaron el curso de la guerra, año por año.</p>
+    </div>
+    <div class="timeline">
+      <div class="timeline__line"></div>
+      <div id="timeline-container"></div>
+    </div>
+  </section>
+
+  <!-- ── MAPA ── -->
+  <section id="mapa" class="section section--map" data-section-index="3">
+    <div class="map-header">
+      <p class="section-kicker reveal-up">Capítulo III</p>
+      <h2 class="section-title reveal-up">El mapa de la guerra</h2>
+      <p class="map-description reveal-up">Los principales frentes, batallas y movimientos estratégicos del conflicto.</p>
+    </div>
+    <div class="map-controls reveal-up">
+      <button class="map-btn active" data-layer="all">Todo</button>
+      <button class="map-btn" data-layer="europe">Europa</button>
+      <button class="map-btn" data-layer="pacific">Pacífico</button>
+      <button class="map-btn" data-layer="africa">África</button>
+    </div>
+    <div id="map-container"></div>
+    <div class="map-legend">
+      <span class="legend-item legend-item--ally">Aliados</span>
+      <span class="legend-item legend-item--axis">Eje</span>
+      <span class="legend-item legend-item--battle">Batalla clave</span>
+    </div>
+  </section>
+
+  <!-- ── EL HOLOCAUSTO ── -->
+  <section id="holocausto" class="section section--holocausto" data-section-index="4">
+    <div class="section-header">
+      <p class="section-kicker reveal-up">Capítulo IV</p>
+      <h2 class="section-title reveal-up">El Holocausto</h2>
+      <p class="reveal-up" style="max-width:60ch;margin:0 auto;">Paralelamente a la guerra militar, el régimen nazi llevó a cabo el mayor genocidio de la historia moderna. Seis millones de judíos fueron asesinados sistemáticamente, junto a millones de personas de otros grupos perseguidos.</p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin-bottom:3rem;" class="reveal-up">
+      <div style="border:1px solid var(--color-border);padding:2rem;background:var(--color-surface);">
+        <p style="font-family:var(--font-display);font-size:3rem;color:var(--color-accent);line-height:1;margin-bottom:0.5rem;max-width:none;">6M</p>
+        <p style="font-family:var(--font-mono);font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--color-ink-3);max-width:none;">Judíos asesinados</p>
+      </div>
+      <div style="border:1px solid var(--color-border);padding:2rem;background:var(--color-surface);">
+        <p style="font-family:var(--font-display);font-size:3rem;color:var(--color-accent);line-height:1;margin-bottom:0.5rem;max-width:none;">1.500</p>
+        <p style="font-family:var(--font-mono);font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--color-ink-3);max-width:none;">Campos y guetos</p>
+      </div>
+      <div style="border:1px solid var(--color-border);padding:2rem;background:var(--color-surface);">
+        <p style="font-family:var(--font-display);font-size:3rem;color:var(--color-accent);line-height:1;margin-bottom:0.5rem;max-width:none;">5–6M</p>
+        <p style="font-family:var(--font-mono);font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--color-ink-3);max-width:none;">Otras víctimas</p>
+      </div>
+    </div>
+
+    <div style="border-left:2px solid var(--color-accent);padding-left:2rem;display:flex;flex-direction:column;gap:2.5rem;">
+
+      <div class="reveal-up">
+        <p style="font-family:var(--font-mono);font-size:0.7rem;letter-spacing:0.12em;color:var(--color-accent-2);margin-bottom:0.5rem;max-width:none;">1933–1938</p>
+        <h3 style="font-family:var(--font-display);font-size:1.4rem;color:var(--color-ink);margin-bottom:0.75rem;">La persecución legal</h3>
+        <p>Las Leyes de Núremberg de 1935 despojaron a los judíos de la ciudadanía alemana y prohibieron los matrimonios mixtos. La <em>Kristallnacht</em> del 9 de noviembre de 1938 — la "Noche de los cristales rotos" — fue la primera gran oleada de violencia abierta: 7.500 negocios destruidos, 1.400 sinagogas incendiadas, 30.000 personas arrestadas.</p>
+      </div>
+
+      <div class="reveal-up">
+        <p style="font-family:var(--font-mono);font-size:0.7rem;letter-spacing:0.12em;color:var(--color-accent-2);margin-bottom:0.5rem;max-width:none;">1939–1941</p>
+        <h3 style="font-family:var(--font-display);font-size:1.4rem;color:var(--color-ink);margin-bottom:0.75rem;">Los guetos</h3>
+        <p>En los territorios ocupados, los nazis hacinaron a la población judía en guetos superpoblados. El gueto de Varsovia llegó a albergar 460.000 personas en apenas 3,3 km², con una devastadora tasa de mortalidad por hambre y enfermedad. Los <em>Einsatzgruppen</em> ejecutaron a más de 500.000 personas en fosas comunes.</p>
+      </div>
+
+      <div class="reveal-up">
+        <p style="font-family:var(--font-mono);font-size:0.7rem;letter-spacing:0.12em;color:var(--color-accent-2);margin-bottom:0.5rem;max-width:none;">1942–1945</p>
+        <h3 style="font-family:var(--font-display);font-size:1.4rem;color:var(--color-ink);margin-bottom:0.75rem;">La Solución Final</h3>
+        <p>En enero de 1942, la Conferencia de Wannsee coordinó el exterminio sistemático. Se construyeron campos de exterminio específicos: Auschwitz-Birkenau, Treblinka, Sobibor, Belzec, Chelmno y Majdanek. Auschwitz fue el mayor complejo: entre 1,1 y 1,5 millones de personas asesinadas. El campo fue liberado por el Ejército Rojo el 27 de enero de 1945 — hoy es el Día Internacional del Holocausto.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── TECNOLOGÍA BÉLICA ── -->
+  <section id="tecnologia" class="section" data-section-index="5">
+    <div class="section-header">
+      <p class="section-kicker reveal-up">Capítulo V</p>
+      <h2 class="section-title reveal-up">La guerra tecnológica</h2>
+      <p class="reveal-up" style="max-width:60ch;margin:0 auto;">La Segunda Guerra Mundial fue también una carrera tecnológica sin precedentes. Los avances de esos seis años — del radar al ordenador, de los cohetes a la fisión nuclear — transformaron el mundo mucho más allá de los campos de batalla.</p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;" class="reveal-up">
+
+      <div style="border:1px solid var(--color-border);padding:1.75rem;background:var(--color-surface);border-top:3px solid var(--color-accent);">
+        <h3 style="font-family:var(--font-display);font-size:1.4rem;color:var(--color-ink);margin-bottom:0.75rem;">Los tanques</h3>
+        <p style="font-size:0.9rem;">El Tiger I alemán era casi invulnerable frontalmente, pero el soviético T-34 ganó la guerra por cantidad: la URSS fabricó 57.000 unidades frente a los 1.347 Tiger I producidos por Alemania. El duelo de tanques en Kursk (julio 1943) fue el mayor de la historia.</p>
+      </div>
+
+      <div style="border:1px solid var(--color-border);padding:1.75rem;background:var(--color-surface);border-top:3px solid var(--color-accent-2);">
+        <h3 style="font-family:var(--font-display);font-size:1.4rem;color:var(--color-ink);margin-bottom:0.75rem;">La aviación</h3>
+        <p style="font-size:0.9rem;">El Spitfire británico y el Focke-Wulf 190 alemán se batieron sobre Europa. El B-17 americano y el Lancaster británico llevaron la guerra a las ciudades. El Me 262, primer avión a reacción en combate, llegó demasiado tarde para cambiar el resultado.</p>
+      </div>
+
+      <div style="border:1px solid var(--color-border);padding:1.75rem;background:var(--color-surface);border-top:3px solid var(--color-ally);">
+        <h3 style="font-family:var(--font-display);font-size:1.4rem;color:var(--color-ink);margin-bottom:0.75rem;">La bomba atómica</h3>
+        <p style="font-size:0.9rem;">El Proyecto Manhattan, liderado por científicos entre los que estaban Oppenheimer, Fermi y Bohr, culminó con la primera detonación nuclear el 16 de julio de 1945. Las bombas sobre Hiroshima y Nagasaki mataron entre 129.000 y 226.000 personas y abrieron la era nuclear.</p>
+      </div>
+
+      <div style="border:1px solid var(--color-border);padding:1.75rem;background:var(--color-surface);border-top:3px solid var(--color-ink-3);">
+        <h3 style="font-family:var(--font-display);font-size:1.4rem;color:var(--color-ink);margin-bottom:0.75rem;">Enigma y el primer ordenador</h3>
+        <p style="font-size:0.9rem;">En Bletchley Park, Alan Turing descifró el código Enigma alemán. Los aliados leían los mensajes enemigos durante toda la guerra. Se estima que esto acortó el conflicto entre dos y cuatro años. La máquina Bombe de Turing sentó las bases de la informática moderna.</p>
+      </div>
+
+      <div style="border:1px solid var(--color-border);padding:1.75rem;background:var(--color-surface);border-top:3px solid var(--color-accent);">
+        <h3 style="font-family:var(--font-display);font-size:1.4rem;color:var(--color-ink);margin-bottom:0.75rem;">El radar</h3>
+        <p style="font-size:0.9rem;">El sistema Chain Home británico, operativo desde 1937, fue decisivo en la Batalla de Gran Bretaña: permitía detectar los aviones alemanes con minutos de antelación. Sin radar, la RAF no habría podido resistir el Blitz. Alemania tenía radar propio pero no supo explotarlo de forma tan eficaz.</p>
+      </div>
+
+      <div style="border:1px solid var(--color-border);padding:1.75rem;background:var(--color-surface);border-top:3px solid var(--color-accent-2);">
+        <h3 style="font-family:var(--font-display);font-size:1.4rem;color:var(--color-ink);margin-bottom:0.75rem;">Los cohetes V-2</h3>
+        <p style="font-size:0.9rem;">El V-2 alemán, diseñado por Wernher von Braun, fue el primer misil balístico de la historia. Más de 3.000 unidades bombardearon Londres y otras ciudades aliadas. Aunque llegó demasiado tarde para cambiar el rumbo de la guerra, su tecnología sentó las bases de la carrera espacial.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── VÍDEO ── -->
+  <section id="video" class="section section--video" data-section-index="6">
+    <div class="video-header">
+      <p class="section-kicker reveal-up">Capítulo IV</p>
+      <h2 class="section-title reveal-up">Imágenes de la guerra</h2>
+      <p class="reveal-up">Las imágenes de archivo conectan con la realidad de quienes vivieron este conflicto. Lo que los textos describen, las imágenes lo hacen presente.</p>
+    </div>
+    <div class="video-wrapper reveal-up">
+      <iframe
+        src="https://www.youtube.com/embed/EMCGdp9zs5c?rel=0&modestbranding=1"
+        title="La Segunda Guerra Mundial — Documental completo en español con imágenes reales"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+        loading="lazy">
+      </iframe>
+    </div>
+    <blockquote class="pull-quote reveal-up">
+      <p>"Solo los muertos han visto el final de la guerra."</p>
+      <cite>— Platón, citado por George Santayana</cite>
+    </blockquote>
+  </section>
+
+  <!-- ── GALERÍA ── -->
+  <section id="galeria" class="section section--gallery" data-section-index="7">
+    <div class="section-header">
+      <p class="section-kicker reveal-up">Capítulo V</p>
+      <h2 class="section-title reveal-up">Archivo fotográfico</h2>
+      <p class="reveal-up">Fotografías históricas de dominio público. Haz clic en cualquier imagen para ampliarla.</p>
+    </div>
+    <div class="gallery-grid" id="gallery-container"></div>
+    <div id="lightbox" class="lightbox" role="dialog" aria-modal="true">
+      <button class="lightbox__close" id="lightbox-close" aria-label="Cerrar">✕</button>
+      <button class="lightbox__prev" id="lightbox-prev" aria-label="Anterior">‹</button>
+      <button class="lightbox__next" id="lightbox-next" aria-label="Siguiente">›</button>
+      <div class="lightbox__img-wrap"><img id="lightbox-img" src="" alt=""></div>
+      <p class="lightbox__caption" id="lightbox-caption"></p>
+    </div>
+  </section>
+
+  <!-- ── PERSONAJES (con filtro) ── -->
+  <section id="personajes" class="section section--cards" data-section-index="8">
+    <div class="section-header">
+      <p class="section-kicker reveal-up">Capítulo VI</p>
+      <h2 class="section-title reveal-up">Protagonistas de la historia</h2>
+      <p class="reveal-up">Líderes, estrategas y figuras que dieron forma al mayor conflicto de la humanidad.</p>
+    </div>
+    <div class="cards-filter reveal-up">
+      <button class="filter-btn active" data-filter="all">Todos</button>
+      <button class="filter-btn" data-filter="ally">Aliados</button>
+      <button class="filter-btn" data-filter="axis">Eje</button>
+    </div>
+    <div class="cards-grid" id="cards-container"></div>
+  </section>
+
+  <!-- ── QUIZ ── -->
+  <section id="quiz" class="section section--quiz" data-section-index="9">
+    <div class="section-header">
+      <p class="section-kicker reveal-up">Capítulo VII</p>
+      <h2 class="section-title reveal-up">Pon a prueba tu conocimiento</h2>
+      <p class="reveal-up">Diez preguntas sobre la Segunda Guerra Mundial. ¿Cuántas aciertas?</p>
+    </div>
+    <div class="quiz-container" id="quiz-container">
+      <div class="quiz-progress">
+        <div class="quiz-progress__bar"><div class="quiz-progress__fill" id="quiz-bar"></div></div>
+        <span class="quiz-progress__label" id="quiz-label">Pregunta 1 de 10</span>
+      </div>
+      <div class="quiz-card" id="quiz-card">
+        <p class="quiz-question" id="quiz-question"></p>
+        <div class="quiz-options" id="quiz-options"></div>
+      </div>
+      <div class="quiz-result" id="quiz-result" style="display:none">
+        <p class="quiz-result__score" id="quiz-score"></p>
+        <p class="quiz-result__msg" id="quiz-msg"></p>
+        <button class="quiz-restart" id="quiz-restart">Intentar de nuevo ↺</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── LEGADO ── -->
+  <section id="fin" class="section section--end" data-section-index="10">
+    <div class="end__content">
+      <p class="section-kicker reveal-up">El legado</p>
+      <h2 class="end__title reveal-up">Un mundo nuevo</h2>
+      <p class="end__lead reveal-up">De las ruinas de la guerra nacieron las instituciones que aún rigen el mundo: la ONU (1945), la OTAN (1949) y el proceso de integración europeo. Los juicios de Núremberg establecieron el principio de crímenes contra la humanidad. La Declaración Universal de los Derechos Humanos fue aprobada en 1948.</p>
+
+      <div class="end__cifras reveal-up">
+        <div class="end__stat-card"><span class="stat-number" data-target="70">0</span><span class="stat-unit">M</span><p>víctimas totales</p></div>
+        <div class="end__stat-card"><span class="stat-number" data-target="6">0</span><span class="stat-unit">M</span><p>víctimas del Holocausto</p></div>
+        <div class="end__stat-card"><span class="stat-number" data-target="27">0</span><span class="stat-unit">M</span><p>bajas soviéticas</p></div>
+        <div class="end__stat-card"><span class="stat-number" data-target="1700">0</span><span class="stat-unit">B$</span><p>coste económico</p></div>
+      </div>
+
+      <blockquote class="final-quote reveal-up">
+        <p>"Nunca en el campo de los conflictos humanos tantos debieron tanto a tan pocos."</p>
+        <cite>— Winston Churchill, sobre los pilotos de la RAF, 20 agosto 1940</cite>
+      </blockquote>
+
+      <div class="end__meta reveal-up">
+        <p>Trabajo de Fin de Grado · Desarrollo web</p>
+        <p>Tècniques d'Interacció Digital i Multimèdia · UOC 2026</p>
+      </div>
+    </div>
+  </section>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/scroll.js"></script>
+  <script src="assets/js/map.js"></script>
+  <script src="assets/js/gallery.js"></script>
+  <script src="assets/js/quiz.js"></script>
+</body>
+</html>
