@@ -92,25 +92,76 @@ function initStickySplit() {
   const imgEl       = document.getElementById('sticky-real-img');
   const placeholder = document.getElementById('sticky-placeholder');
   const capEl       = document.getElementById('img-caption-contexto');
+  const frame       = document.getElementById('img-frame-contexto');
 
-  function loadImage(src, alt, caption) {
-    if (!src) return;
-    const tmp = new Image();
-    tmp.onload = () => {
-      imgEl.src = src;
-      imgEl.alt = alt || caption;
-      imgEl.style.display = 'block';
-      if (placeholder) placeholder.style.display = 'none';
-    };
-    tmp.onerror = () => {
-      imgEl.style.display = 'none';
-      if (placeholder) { placeholder.style.display = 'flex'; placeholder.querySelector('.img-label').textContent = alt || '···'; }
-    };
-    tmp.src = src;
-    if (capEl) capEl.textContent = caption || '';
+  // Estado de la imagen actual para no reanimar si es la misma
+  let currentSrc = '';
+
+  function animateImageOut(onComplete) {
+    // Fade out + pequeño desplazamiento hacia arriba
+    gsap.to(imgEl, {
+      opacity: 0,
+      y: -12,
+      duration: 0.25,
+      ease: 'power2.in',
+      onComplete
+    });
+    // Caption fade out
+    if (capEl) gsap.to(capEl, { opacity: 0, duration: 0.2 });
   }
 
-  // Cargar la primera imagen inmediatamente
+  function animateImageIn() {
+    // Posicionar abajo antes de entrar
+    gsap.set(imgEl, { y: 16, opacity: 0 });
+    // Fade in + subida
+    gsap.to(imgEl, {
+      opacity: 1,
+      y: 0,
+      duration: 0.45,
+      ease: 'power2.out'
+    });
+    // Caption aparece ligeramente después
+    if (capEl) {
+      gsap.set(capEl, { opacity: 0 });
+      gsap.to(capEl, { opacity: 1, duration: 0.4, delay: 0.25 });
+    }
+  }
+
+  function loadImage(src, alt, caption) {
+    if (!src || src === currentSrc) return;
+    currentSrc = src;
+
+    const doLoad = () => {
+      const tmp = new Image();
+      tmp.onload = () => {
+        imgEl.src = src;
+        imgEl.alt = alt || caption;
+        imgEl.style.display = 'block';
+        if (placeholder) placeholder.style.display = 'none';
+        if (capEl) capEl.textContent = caption || '';
+        animateImageIn();
+      };
+      tmp.onerror = () => {
+        imgEl.style.display = 'none';
+        if (placeholder) {
+          placeholder.style.display = 'flex';
+          const lbl = placeholder.querySelector('.img-label');
+          if (lbl) lbl.textContent = alt || '···';
+        }
+        if (capEl) capEl.textContent = caption || '';
+      };
+      tmp.src = src;
+    };
+
+    // Si ya hay imagen visible, animar salida primero
+    if (imgEl.style.display !== 'none' && imgEl.src) {
+      animateImageOut(doLoad);
+    } else {
+      doLoad();
+    }
+  }
+
+  // Cargar la primera imagen inmediatamente (sin animación de salida)
   const first = steps[0];
   loadImage(first.dataset.src, first.dataset.caption, first.dataset.caption);
   first.classList.add('is-active');
@@ -120,7 +171,11 @@ function initStickySplit() {
       if (entry.isIntersecting) {
         steps.forEach(s => s.classList.remove('is-active'));
         entry.target.classList.add('is-active');
-        loadImage(entry.target.dataset.src, entry.target.dataset.caption, entry.target.dataset.caption);
+        loadImage(
+          entry.target.dataset.src,
+          entry.target.dataset.caption,
+          entry.target.dataset.caption
+        );
       }
     });
   }, { threshold: 0.5 });

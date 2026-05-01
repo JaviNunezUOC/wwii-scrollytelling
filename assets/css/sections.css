@@ -69,7 +69,18 @@
 .sticky-img { width: 100%; max-width: 480px; }
 /* CORRECCIÓN 1: aspect-ratio portrait para fotos verticales de personajes históricos */
 .sticky-img__frame { aspect-ratio: 3/4; overflow: hidden; border: 1px solid var(--color-border); position: relative; transition: all 0.5s var(--ease-out); }
-.sticky-img__frame img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+.sticky-img__frame img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center top;
+  display: block;
+  will-change: transform, opacity;  /* suaviza las animaciones GSAP */
+}
+.sticky-img__caption {
+  margin-top: 1rem;
+  font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.1em;
+  color: var(--color-ink-3);
+  will-change: opacity;
+}
 .sticky-img__placeholder { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.5rem; background: var(--color-surface); }
 .img-label { font-family: var(--font-display); font-size: 1.5rem; color: var(--color-ink-2); }
 .sticky-img__caption { margin-top: 1rem; font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.1em; color: var(--color-ink-3); transition: opacity 0.4s var(--ease-out); }
@@ -86,9 +97,6 @@
 
 /* ═══════════════════════════ SECTION BG TEXTURES ═══════════════════════════ */
 /* CAMBIO 3: fondos con textura sutil para romper la monotonía */
-
-
-
 
 .section--gallery::before {
   content: ''; position: absolute; inset: 0;
@@ -150,14 +158,41 @@
 .event-title { font-family: var(--font-display); font-size: 1.15rem; color: var(--color-ink); margin-bottom: 0.35rem; line-height: 1.1; }
 .event-desc { font-size: 0.85rem; color: var(--color-ink-2); max-width: 28ch; display: inline-block; line-height: 1.6; }
 @media (max-width: 680px) {
-  .timeline__line { left: 16px; }
-  .timeline-event { grid-template-columns: 32px 1fr; gap: 0 1rem; }
+  /* Línea vertical: centrada en la columna del dot (20px = mitad de 40px) */
+  .timeline__line { left: 20px; transform: none; }
+
+  /* Grid: columna dot de 40px exactos + resto para texto */
+  .timeline-event {
+    grid-template-columns: 40px 1fr;
+    gap: 0 1rem;
+    margin-bottom: 2.5rem;
+  }
+
+  /* Todo el texto va a la columna 2, alineado a la izquierda */
   .timeline-event:nth-child(odd) .event-content,
-  .timeline-event:nth-child(even) .event-content { grid-column: 2; text-align: left; }
+  .timeline-event:nth-child(even) .event-content {
+    grid-column: 2;
+    text-align: left;
+  }
+
+  /* El dot va a la columna 1, centrado horizontalmente en sus 40px */
   .timeline-event:nth-child(odd) .event-dot,
-  .timeline-event:nth-child(even) .event-dot { grid-column: 1; }
+  .timeline-event:nth-child(even) .event-dot {
+    grid-column: 1;
+    justify-content: center;  /* centra el círculo dentro de los 40px */
+  }
+
+  /* El dot interior bien centrado sobre la línea */
+  .event-dot__inner {
+    width: 10px;
+    height: 10px;
+    flex-shrink: 0;
+  }
+
   .event-empty { display: none; }
-  .event-desc { max-width: none; }
+  .event-desc { max-width: none; font-size: 0.82rem; }
+  .event-title { font-size: 1rem; }
+  .event-year  { font-size: 0.65rem; }
 }
 
 /* ═══════════════════════════ MAPA ═══════════════════════════ */
@@ -298,7 +333,57 @@
 .end__meta { padding-top: 2rem; border-top: 1px solid var(--color-border); }
 .end__meta p { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.1em; color: var(--color-ink-3); max-width: none; line-height: 2.2; }
 @media (max-width: 900px) { .end__cifras { grid-template-columns: repeat(2,1fr); } .end__stat-card:nth-child(2) { border-right: none; } .end__stat-card:nth-child(3) { border-top: 1px solid var(--color-border); } }
-@media (max-width: 500px) { .end__cifras { grid-template-columns: 1fr; } .end__stat-card { border-right: none !important; border-bottom: 1px solid var(--color-border); } }
+@media (max-width: 500px) {
+  .end__cifras { grid-template-columns: 1fr; }
+  .end__stat-card { border-right: none !important; border-bottom: 1px solid var(--color-border); }
+}
+
+/* ── MEJORAS RESPONSIVE GENERALES ── */
+@media (max-width: 600px) {
+  /* Quiz: padding más compacto */
+  .quiz-container { padding: 1.5rem 1.25rem; }
+  .quiz-question { font-size: 1rem; }
+  .quiz-option { padding: 0.7rem 1rem; font-size: 0.9rem; }
+
+  /* Galería: una sola columna en móvil pequeño */
+  .gallery-grid { grid-template-columns: 1fr; }
+
+  /* Cards protagonistas: una columna */
+  .cards-grid { grid-template-columns: 1fr; }
+
+  /* Pull quote más compacta */
+  .pull-quote { padding: 1.25rem; }
+  .pull-quote p { font-size: 1rem; }
+
+  /* Mapa controles: wrap mejor */
+  .map-controls { gap: 6px; }
+  .map-btn { padding: 0.4rem 0.8rem; font-size: 0.65rem; }
+
+  /* Nav tooltip: ocultar en móvil */
+  #nav-tooltip { display: none; }
+
+  /* Sección fin: quote más compacta */
+  .final-quote { padding: 1.5rem 1rem; }
+  .final-quote p { font-size: 1rem; }
+
+  /* Tecnología y Holocausto cards: una columna */
+  #tecnologia > div[style*="grid"],
+  #holocausto > div[style*="grid"] {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Hero stats más compactas */
+  .hero__stats { gap: 1.5rem; }
+  .hero__stat-num { font-size: 1.8rem; }
+
+  /* Scroll hint: ocultar en móvil muy pequeño */
+  .hero__scroll-hint { display: none; }
+
+  /* Section kicker más pequeño */
+  .section-kicker { font-size: 0.65rem; letter-spacing: 0.15em; }
+}
 
 /* ═══════════════ NAV TOOLTIP ═══════════════ */
 #nav-tooltip { position: fixed; right: 3rem; pointer-events: none; z-index: 99; opacity: 0; transition: opacity 0.2s; }
