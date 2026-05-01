@@ -2,7 +2,8 @@
 
 gsap.registerPlugin(ScrollTrigger);
 
-/* ── BARRA DE PROGRESO ─────────────────────────── */
+/* ── BARRA DE PROGRESO ── */
+
 function initProgressBar() {
   const bar = document.getElementById('progress-bar');
   window.addEventListener('scroll', () => {
@@ -11,7 +12,8 @@ function initProgressBar() {
   }, { passive: true });
 }
 
-/* ── NAV LATERAL ────────────────────────────────── */
+/* ── NAV LATERAL ── */
+
 function initSideNav() {
   const dots    = document.querySelectorAll('.nav-dot');
   const tooltip = document.getElementById('nav-tooltip');
@@ -23,7 +25,6 @@ function initSideNav() {
       clearTimeout(timer);
       const label = dot.dataset.label;
       if (!label) return;
-      // Posicionar tooltip a la altura del dot
       const rect = dot.getBoundingClientRect();
       tooltip.style.top = (rect.top + rect.height / 2) + 'px';
       tooltip.style.transform = 'translateY(-50%)';
@@ -48,7 +49,8 @@ function initSideNav() {
   sections.forEach(s => observer.observe(s));
 }
 
-/* ── REVEALS GENÉRICOS ──────────────────────────── */
+/* ── REVEALS GENÉRICOS ── */
+
 function initRevealAnimations() {
   const els = document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right');
   const observer = new IntersectionObserver((entries) => {
@@ -65,7 +67,8 @@ function initRevealAnimations() {
   els.forEach(el => observer.observe(el));
 }
 
-/* ── HERO ────────────────────────────────────────── */
+/* ── HERO ── */
+
 function initHeroAnimation() {
   const tl = gsap.timeline({ delay: 0.2 });
   tl.to('.hero__kicker',   { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' })
@@ -84,7 +87,8 @@ function initHeroAnimation() {
   });
 }
 
-/* ── STICKY SPLIT con imágenes de Wikimedia ─────── */
+/* ── STICKY SPLIT ── */
+
 function initStickySplit() {
   const steps = document.querySelectorAll('#contexto .scroll-step');
   if (!steps.length) return;
@@ -94,11 +98,9 @@ function initStickySplit() {
   const capEl       = document.getElementById('img-caption-contexto');
   const frame       = document.getElementById('img-frame-contexto');
 
-  // Estado de la imagen actual para no reanimar si es la misma
   let currentSrc = '';
 
   function animateImageOut(onComplete) {
-    // Fade out + pequeño desplazamiento hacia arriba
     gsap.to(imgEl, {
       opacity: 0,
       y: -12,
@@ -106,21 +108,17 @@ function initStickySplit() {
       ease: 'power2.in',
       onComplete
     });
-    // Caption fade out
     if (capEl) gsap.to(capEl, { opacity: 0, duration: 0.2 });
   }
 
   function animateImageIn() {
-    // Posicionar abajo antes de entrar
     gsap.set(imgEl, { y: 16, opacity: 0 });
-    // Fade in + subida
     gsap.to(imgEl, {
       opacity: 1,
       y: 0,
       duration: 0.45,
       ease: 'power2.out'
     });
-    // Caption aparece ligeramente después
     if (capEl) {
       gsap.set(capEl, { opacity: 0 });
       gsap.to(capEl, { opacity: 1, duration: 0.4, delay: 0.25 });
@@ -152,16 +150,12 @@ function initStickySplit() {
       };
       tmp.src = src;
     };
-
-    // Si ya hay imagen visible, animar salida primero
     if (imgEl.style.display !== 'none' && imgEl.src) {
       animateImageOut(doLoad);
     } else {
       doLoad();
     }
   }
-
-  // Cargar la primera imagen inmediatamente (sin animación de salida)
   const first = steps[0];
   loadImage(first.dataset.src, first.dataset.caption, first.dataset.caption);
   first.classList.add('is-active');
@@ -183,7 +177,8 @@ function initStickySplit() {
   steps.forEach(step => observer.observe(step));
 }
 
-/* ── TIMELINE ─────────────────────────────────────── */
+/* ── TIMELINE ── */
+
 function initTimeline() {
   const container = document.getElementById('timeline-container');
   if (!container || !DATA.timeline) return;
@@ -207,7 +202,8 @@ function initTimeline() {
   container.querySelectorAll('.timeline-event').forEach(ev => observer.observe(ev));
 }
 
-/* ── PERSONAJES con filtro ───────────────────────── */
+/* ── PERSONAJES ── */
+
 function initPersonCards() {
   const container = document.getElementById('cards-container');
   if (!container || !DATA.people) return;
@@ -230,8 +226,6 @@ function initPersonCards() {
         </div>
       </article>`);
   });
-
-  // Animación de entrada
   const cards = container.querySelectorAll('.person-card');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -244,7 +238,6 @@ function initPersonCards() {
   }, { threshold: 0.08 });
   cards.forEach(c => observer.observe(c));
 
-  // Filtro Aliados / Eje
   document.querySelectorAll('.filter-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
@@ -258,7 +251,8 @@ function initPersonCards() {
   });
 }
 
-/* ── CONTADORES ANIMADOS ─────────────────────────── */
+/* ── CONTADORES ANIMADOS ── */
+
 function initCountUp() {
   const numEls = document.querySelectorAll('.stat-number');
   if (!numEls.length) return;
@@ -285,7 +279,8 @@ function initCountUp() {
   numEls.forEach(el => observer.observe(el));
 }
 
-/* ── INICIALIZAR TODO ─────────────────────────────── */
+/* ── INICIALIZAR TODO ── */
+
 document.addEventListener('DOMContentLoaded', () => {
   initProgressBar();
   initSideNav();
