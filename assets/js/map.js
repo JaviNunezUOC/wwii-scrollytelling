@@ -1,10 +1,10 @@
-/* MAP.JS — Mapa interactivo Leaflet */
+/* MAP.JS — Mapa interactivo */
 
 function initMap() {
   const mapEl = document.getElementById('map-container');
   if (!mapEl || !DATA.mapMarkers) return;
 
-  const allMarkers = [];  // ← declarado aquí, dentro de la función
+  const allMarkers = [];
 
   const map = L.map('map-container', { center: [48, 15], zoom: 4, zoomControl: false, attributionControl: false });
 
