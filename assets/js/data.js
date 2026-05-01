@@ -1,10 +1,10 @@
-/* DATA.JS — Segunda Guerra Mundial — v4 */
+/* DATA.JS — Segunda Guerra Mundial */
 
 const DATA = {
-
   meta: { title: "Segunda Guerra Mundial", period: "1939 — 1945", theme: "wwii", author: "TFG UOC 2025" },
 
-  /* ── CRONOLOGÍA — 18 eventos ──────────────────────────────── */
+  /* ── CRONOLOGÍA ── */
+
   timeline: [
     { year: "Sep 1939", title: "Invasión de Polonia",
       desc: "Alemania invade Polonia el 1 de septiembre con 1,5 millones de soldados. Francia y Reino Unido declaran la guerra dos días después. El 17 de septiembre la URSS invade Polonia por el este en virtud del Pacto Molotov-Ribbentrop. Polonia cae en 35 días.",
@@ -62,7 +62,8 @@ const DATA = {
       category: "ally" }
   ],
 
-  /* ── MAPA — 16 marcadores ────────────────────────────────── */
+  /* ── MAPA ── */
+
   mapMarkers: [
     { lat: 52.2,  lng: 21.0,   name: "Varsovia",    year: "1939",    desc: "Primera capital europea ocupada. El gueto de Varsovia albergó 460.000 personas en 3,3 km². Levantamiento del gueto en 1943.", type: "axis",   layer: "europe"  },
     { lat: 48.8,  lng: 2.35,   name: "París",       year: "1940/44", desc: "Ocupada en junio de 1940 sin resistencia. Liberada el 25 de agosto de 1944. La resistencia francesa actuó durante toda la ocupación.", type: "axis",   layer: "europe"  },
@@ -82,7 +83,8 @@ const DATA = {
     { lat: 37.0,  lng: 10.2,   name: "Túnez",       year: "1943",    desc: "Mayo 1943: capitulación del Eje en África del Norte. 275.000 prisioneros alemanes e italianos. El continente africano queda despejado para el desembarco en Sicilia.", type: "ally",   layer: "africa"  }
   ],
 
-  /* ── PERSONAJES ─────────────────────────────────────────── */
+  /* ── PERSONAJES ── */
+
   people: [
     {
       name: "Winston Churchill", role: "Primer Ministro, Reino Unido", years: "1874 — 1965", side: "ally",
@@ -126,7 +128,8 @@ const DATA = {
     }
   ],
 
-  /* ── GALERÍA ─────────────────────────────────────────────── */
+  /* ── GALERÍA ── */
+  
   gallery: [
     { src: "assets/images/galeria-1.jpg",  caption: "Desembarco de Normandía — Día D, 6 junio 1944" },
     { src: "assets/images/galeria-2.jpg",  caption: "Izando la bandera en Iwo Jima, febrero 1945" },
