@@ -1,4 +1,4 @@
-/* QUIZ.JS — Quiz interactivo sobre la Segunda Guerra Mundial */
+/* QUIZ.JS — Quiz interactivo */
 
 const QUIZ_QUESTIONS = [
   {
@@ -132,7 +132,6 @@ function initQuiz() {
 
   restartBtn.addEventListener('click', restartQuiz);
 
-  // Iniciar cuando el quiz entre en viewport
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
