@@ -1,4 +1,4 @@
-/* GALLERY.JS — Galería fotográfica con lightbox */
+/* GALLERY.JS — Galería fotográfica */
 
 function initGallery() {
   const container = document.getElementById('gallery-container');
@@ -13,7 +13,6 @@ function initGallery() {
 
   let currentIndex = 0;
 
-  /* Generar items de la galería */
   DATA.gallery.forEach((item, i) => {
     const div = document.createElement('div');
     div.className = 'gallery-item';
@@ -25,7 +24,6 @@ function initGallery() {
     container.appendChild(div);
   });
 
-  /* Animación de entrada */
   const items = container.querySelectorAll('.gallery-item');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -38,7 +36,6 @@ function initGallery() {
   }, { threshold: 0.1 });
   items.forEach(item => observer.observe(item));
 
-  /* Lightbox */
   function openLightbox(index) {
     currentIndex = index;
     showImage(currentIndex);
@@ -66,7 +63,6 @@ function initGallery() {
   btnPrev.addEventListener('click', prevImage);
   btnNext.addEventListener('click', nextImage);
 
-  // Teclado
   document.addEventListener('keydown', (e) => {
     if (!lightbox.classList.contains('is-open')) return;
     if (e.key === 'Escape')     closeLightbox();
@@ -74,7 +70,6 @@ function initGallery() {
     if (e.key === 'ArrowRight') nextImage();
   });
 
-  // Click fuera de la imagen
   lightbox.addEventListener('click', (e) => {
     if (e.target === lightbox) closeLightbox();
   });
