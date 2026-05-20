@@ -279,6 +279,26 @@ function initCountUp() {
   numEls.forEach(el => observer.observe(el));
 }
 
+─────────────────────────────────────────────────────────── */
+
+function initVideoAutoPause() {
+  const video = document.getElementById('documental-video');
+  if (!video) return;
+
+  const section = document.getElementById('video');
+  if (!section) return;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting && !video.paused) {
+        video.pause();
+      }
+    });
+  }, { threshold: 0.2 });
+
+  observer.observe(section);
+}
+
 /* ── INICIALIZAR TODO ── */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -290,4 +310,5 @@ document.addEventListener('DOMContentLoaded', () => {
   initTimeline();
   initPersonCards();
   initCountUp();
+  initVideoAutoPause();
 });
