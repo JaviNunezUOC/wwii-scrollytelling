@@ -279,6 +279,9 @@ function initCountUp() {
   numEls.forEach(el => observer.observe(el));
 }
 
+/* ── VÍDEO LOCAL — pausa automática al salir de la sección ──
+   Se pausa cuando la sección queda fuera del viewport para que
+   el audio no siga sonando mientras se lee otro capítulo.
 ─────────────────────────────────────────────────────────── */
 
 function initVideoAutoPause() {
